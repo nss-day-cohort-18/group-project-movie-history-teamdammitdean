@@ -1,19 +1,21 @@
-<!-- //does for each car listed in the json -->
-{{#each cars}}
-<!-- //4 grid wide card -->
-<div id="car{{year}}" class="col-md-4">
-
-    <!-- //main card class, added required styling -->
-    <div class="card" style="border: 2px solid black">
-        <!-- //image -->
-        <img class="card-img-top" src="/images/{{image}}" alt="Card image cap">
-        <div class="card-block">
-            <!-- //year, make, and model (ex. 1996 Ford Focus) -->
-            <h2 class="card-title">{{year}} {{make}} {{model}}</h3>
-            <h4 class="card-text">{{price}}</h4>
-            <!-- //description. can I put a scroll bar here? -->
-            <p class="card-text description">{{description}}</p>
-        </div>
+  <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src={{Poster}}>
     </div>
-</div>
-{{/each}}
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{Title}}<i class="material-icons right">more_vert</i></span>
+      <p>Add to List</p>
+      {{#if onList}}
+        <p>Watched</p>
+      {{/if}}
+          {{#if watched}}
+            <p>Rating</p>
+          {{/if}}
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Movie Information<i class="material-icons right">close</i></span>
+      <p>Year Released: {{Year}}</p>
+      <p>Actors: {{Actors}}</p>
+      <p>Synopsis: {{Plot}}</p>
+    </div>
+  </div>
