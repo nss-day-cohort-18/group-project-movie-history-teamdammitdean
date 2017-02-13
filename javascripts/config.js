@@ -17,7 +17,7 @@ var config = {
 	apiKey: fbData.apiKey,
 	authDomain: fbData.authDomain,
 	databaseURL: fbData.databaseURL
-}
+};
 
 // Allows us to interact with firebase
 firebase.initializeApp(config);
