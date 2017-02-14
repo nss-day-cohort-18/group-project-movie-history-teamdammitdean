@@ -2,26 +2,33 @@
 <html>
     <head>
         <meta charset="utf-8">
+         <!-- Compiled and minified CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
         <title>Team Damnit Dean</title>
     </head>
     <body>
     	<header>
-    		<nav>
+            <nav>
                 <div class="nav-wrapper">
-                  <a href="#" class="brand-logo center">Logo</a>
+                  <form>
+                    <div class="input-field">
+                      <input id="search" type="search" required>
+                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                      <i class="material-icons">close</i>
+                    </div>
+                  </form>
+                </div>
+            </nav>
+            <nav>
+                <div class="nav-wrapper">
+                  <a href="#" class="brand-logo right">Logo</a>
                   <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li>Find new movies</li>
-                    <li>Log in/Log out</li>
-                    <li>Search your movies</li>
-                    <li>
-                        <form>
-                            <div class="input-field">
-                              <input id="search" type="search" required>
-                              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                              <i class="material-icons">close</i>
-                            </div>
-                        </form>
-                    </li>
+                    <li><a href="#">Show untracked</a></li>
+                    <li><a href="#">Show unwatched</a></li>
+                    <li><a href="#">Show watched</a></li>
+                    <li><a href="#">Favorites</a></li>
+                    <li><a href="#">Log in/Log Out</a></li>
                   </ul>
                 </div>
             </nav>
@@ -29,88 +36,29 @@
     	<section>
     		<h1>Movie History</h1>
     	</section>
-        <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s6">
-                  <i class="material-icons prefix">account_circle</i>
-                  <input id="icon_prefix" type="text" class="validate">
-                  <label for="icon_prefix">First Name</label>
-                </div>
-                <div class="input-field col s6">
-                  <i class="material-icons prefix">phone</i>
-                  <input id="icon_telephone" type="tel" class="validate">
-                  <label for="icon_telephone">Telephone</label>
-                  <div class="input-field col s12">
-                    <select>
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
-                    </select>
-                    <label>Materialize Select</label>
+            <div class="row">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <i class="material-icons prefix">account_circle</i>
+                      <input id="icon_prefix" type="text" class="validate">
+                      <label for="icon_prefix">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <i class="material-icons prefix">phone</i>
+                      <input id="icon_telephone" type="tel" class="validate">
+                      <label for="icon_telephone">Telephone</label>
+                    </div>
                   </div>
-
-                  <div class="input-field col s12">
-                    <select multiple>
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
-                    </select>
-                    <label>Materialize Multiple Select</label>
-                  </div>
-
-                  <div class="input-field col s12">
-                    <select multiple>
-                      <optgroup label="team 1">
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                      </optgroup>
-                      <optgroup label="team 2">
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                      </optgroup>
-                    </select>
-                    <label>Optgroups</label>
-                  </div>
-
-                  <div class="input-field col s12 m6">
-                    <select class="icons">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="" data-icon="images/sample-1.jpg" class="circle">example 1</option>
-                      <option value="" data-icon="images/office.jpg" class="circle">example 2</option>
-                      <option value="" data-icon="images/yuna.jpg" class="circle">example 1</option>
-                    </select>
-                    <label>Images in select</label>
-                  </div>
-                  <div class="input-field col s12 m6">
-                    <select class="icons">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="" data-icon="images/sample-1.jpg" class="left circle">example 1</option>
-                      <option value="" data-icon="images/office.jpg" class="left circle">example 2</option>
-                      <option value="" data-icon="images/yuna.jpg" class="left circle">example 3</option>
-                    </select>
-                    <label>Images in select</label>
-                  </div>
-
-                  <label>Browser Select</label>
-                  <select class="browser-default">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                  </select>
-                </div>
-              </div>
-            </form>
-        </div>
-    	<section>
-    		<ul>
-    			<li><a href=""><h3>Unwatched</h3></a></li>
-    			<li><a href=""><h3>Watched</h3></a></li>
-    		</ul>
-    	</section>
+                </form>
+            </div>
+  
+        	<section>
+        		<ul>
+        			<li><a href=""><h3>Unwatched</h3></a></li>
+        			<li><a href=""><h3>Watched</h3></a></li>
+        		</ul>
+        	</section>
     	<section>
     		<div class="card">
     	
@@ -123,6 +71,7 @@
     		</div>
 
     	</section>
+    <script type="text/javascript" src="javascripts/main.js"></script>
     <script type="text/javascript" src="dist/app.js"></script>
     </body>
 </html>
