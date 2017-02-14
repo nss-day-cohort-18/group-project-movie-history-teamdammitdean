@@ -1,4 +1,4 @@
-"use strict";
+"use strict";//This file must be ignored. We don't want anyone to have our keys.
 
 // API key we are using
 // Authenticates users for the firebase
