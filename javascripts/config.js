@@ -6,6 +6,8 @@
 let firebase = require("firebase/app"),
 	fb = require("./fbGetter.js"),
 	fbData = fb();
+	movieAPI = require("./fbGetter"),
+	moviedata = movieAPI();
 
 // Need these to manipulate firebase
 require("firebase/auth");
