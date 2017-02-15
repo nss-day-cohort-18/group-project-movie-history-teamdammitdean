@@ -4,7 +4,8 @@ let $ = require("jquery"),
   firebase = require("./config.js"),
   getKey = require("./dbGetter.js"),
   db = require("./dbInteraction.js"),
-  template = require("../templates/cardLayout.hbs"),
+  api = require("./api.js"),
+  // template = require("../templates/cardLayout.hbs"),
   user = require("./user");
 
 // user is automatically logged out when first visiting page
@@ -46,6 +47,28 @@ $("#logout").click(function(){
 //     // loadMoviesToDOM(searchResult);
 //   }
 // });
+
+//just putting below function right here for now, will probably need to go in main.js
+// var userInput = document.getElementBytId("searchbar");
+// userInput.addEventListener("keyup", EnterSearch);
+
+function EnterSearch(event) {
+    console.log("event", event);
+  if (event.keyCode === 13){
+  var searchResult = document.getElementById("searchbar").value;
+  console.log("searchResult", searchResult);
+  loadSearchedMoviesToDOM(searchResult); //does this go here??
+  }
+}
+
+function loadSearchedMoviesToDOM(searchResult) {
+    console.log("searchResult", searchResult);
+    api.searchAPI(searchResult).then(function(movieRetrieved) {
+        console.log("movieRetrieved2", movieRetrieved);
+        });
+}
+
+
 
 
 
