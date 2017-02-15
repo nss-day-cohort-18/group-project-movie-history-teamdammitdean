@@ -5,9 +5,9 @@
 // Our firebase URL address , we can make calls 
 function getKey() {
 	return {
-		apiKey: "AIzaSyDJ-P7PbkEX_MVgVob00hPKzKJ03laRiUA",
-		authDomain: "movie-history-70b20.firebaseapp.com",
-		databaseURL: "https://movie-history-70b20.firebaseio.com"
+		apiKey: "AIzaSyAyUnXNmHbM9S5PGYamDa8QjCiNh_EfLrM",
+		authDomain: "movie-history-group-proj-dfc09.firebaseapp.com",
+		databaseURL: "https://movie-history-group-proj-dfc09.firebaseio.com"
 	};
 }
 
