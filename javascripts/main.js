@@ -10,8 +10,7 @@ let $ = require("jquery"),
 
 // user is automatically logged out when first visiting page
 user.logOut();
-
-$("#searchbar").on("keyup", db.EnterSearch);
+$("#searchbar").on("keyup", EnterSearch);
      // template = require("../templates/cardLayout.hbs");
 
 //materialize being initialized
