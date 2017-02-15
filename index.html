@@ -5,7 +5,7 @@
          <!-- Compiled and minified CSS -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-        <link rel="stylesheet" type="text/css" href=css/main.css"">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
         <title>Team Damnit Dean</title>
     </head>
     <body>
@@ -14,7 +14,7 @@
                 <div class="nav-wrapper">
                   <form>
                     <div class="input-field">
-                      <input id="search" type="search" required>
+                      <input id="searchbar" type="search" required>
                       <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                       <i class="material-icons">close</i>
                     </div>
@@ -23,19 +23,22 @@
             </nav>
             <nav>
                 <div class="nav-wrapper">
-                  <a href="#" class="brand-logo right">Logo</a>
                   <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li><a href="#">Show untracked</a></li>
                     <li><a href="#">Show unwatched</a></li>
                     <li><a href="#">Show watched</a></li>
-                    <li><a href="#">Favorites</a></li>
-                    <li><a href="#">Log in/Log Out</a></li>
-                  </ul>
+                    <li><a href="#" id="auth-btn" class="is-hidden">Log in</a></li>
+                    <li><a href="#" id="logout" class="is-hidden">Log Out</a></li>
+                              </ul>
                 </div>
             </nav>
-    	</header>
+      </header>
+                    <!-- Single-value slider: -->
+      <div data-role="rangeSlider" data-mini="true"> 
+        <label for="range">Search by ratings:</label>       
+        <input id="rangeSlider" type="range" min="1" max="10" value="10" step="1"/>
+      </div>
     	<section>
-    		<h1>Movie History</h1>
     	</section>
     	<section>
     		<div class="card">
@@ -50,6 +53,6 @@
 
     	</section>
     <script type="text/javascript" src="dist/app.js"></script>
-    <script type="text/javascript" src="/lib/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     </body>
 </html>

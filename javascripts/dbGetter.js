@@ -11,14 +11,14 @@ function getKey() {
 	};
 }
 
-function movieAPIKey() {
-	return {
-		apiKey: 
-	};
-}
+// function movieAPIKey() {
+// 	return {
+// 		apiKey: 
+// 	};
+// }
 
 // Makes function accessible to other js files
-module.exports = {getKey, movieAPIKey};
+module.exports = getKey;
 
 
 //////// 	This file is to be kept private		///////////
