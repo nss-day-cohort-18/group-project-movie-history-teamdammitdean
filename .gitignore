@@ -1,3 +1,4 @@
- 	lib/.sass-cache
+lib/.sass-cache
 lib/node_modules
 .DS_Store
+dbGetter.js

@@ -61,9 +61,10 @@ function EnterSearch(event) {
 }
 
 function loadSearchedMoviesToDOM(searchResult) {
-    console.log("searchResult", searchResult);
+    // console.log("searchResult", searchResult);
     api.searchAPI(searchResult).then(function(movieRetrieved) {
-        console.log("movieRetrieved2", movieRetrieved);
+        console.log("movieRetrieved2", movieRetrieved.results[0].poster_path);
+        //call the buildMovieObj function here
         });
 }
 
