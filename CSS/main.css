@@ -1,9 +1,6 @@
 
 
 /*# sourceMappingURL=main.css.map */
-.card {
-  border: 2px solid black;
-}
 
 .movieOverview {
   font-size: 18px;
@@ -13,3 +10,4 @@
 .releaseDate {
   font-weight: bold;
 }
+

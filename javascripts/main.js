@@ -6,7 +6,10 @@ let $ = require("jquery"),
   db = require("./dbInteraction.js"),
   api = require("./api.js"),
   // template = require("../templates/cardLayout.hbs"),
-  user = require("./user");
+  user = require("./user"),
+  rating = require("./jquery.barrating.js");
+  
+
 
 
 // user is automatically logged out when first visiting page
@@ -58,7 +61,7 @@ function EnterSearch(event) {
   if (event.keyCode === 13){
   var searchResult = document.getElementById("searchbar").value;
   console.log("searchResult", searchResult);
-  loadSearchedMoviesToDOM(searchResult); //does this go here??
+  loadSearchedMoviesToDOM(searchResult); 
   }
 }
 
@@ -85,7 +88,6 @@ function buildMovieObj(movieArrayResults) {
   newDiv.classList.add("row");
     console.log("the movies will be seen now!!!");
   for (var i = 0; i < movieArrayResults.length; i++){//looping through the length of the array, incrementing after every iteration
-    console.log("will this be endless");
 
    moviePoster = 
 
@@ -112,7 +114,18 @@ function buildMovieObj(movieArrayResults) {
                 <button class="movieDeleteBtn" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">Delete
                 </button>
             </div>
-
+            <select class="example">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+            </select>
             <div class="card-reveal">
             <span class="card-title"><i class="material-icons right">close</i>   
                 <p class="movieOverview">${movieArrayResults[i].overview}</p>
@@ -124,16 +137,24 @@ function buildMovieObj(movieArrayResults) {
 
     newDiv.innerHTML += moviePoster;
     movieCards.appendChild(newDiv);
-    if ( i === (n *3) - 1){
+    if ( i === (n *3) - 1){//after every third movie card, start a new row for the next three results 
       newDiv = document.createElement("DIV");
       newDiv.classList.add("row");
       n++;
     }                   
     // $("#outputEl").append(moviePoster);//sends the end result of the cards to the section waiting to hold them on the html
     console.log("this is after the movie should have been seen");
-  
-  }  
+
+  }
+   //the below funciton is running each of the rating options through the barrating function in the jquery.barrating.js file and applying the theme that turns them into stars
+   $(function() {
+      $('.example').barrating({
+        theme: 'fontawesome-stars'
+      });
+   });  
 }
+  
+
 
 //helper
 function buildMovieObject(data) {
