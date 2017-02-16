@@ -8,13 +8,13 @@ let $ = require('jquery'),
 
 
 //when user tracks a movie
-function trackAndAddToFirebase(buildMovieObj) {
+function trackAndAddToFirebase(movieObject) {
     console.log("hi track movie function");
     return new Promise(function(resolve,reject){
     	$.ajax({
     		url: `https://movie-history-group-proj-dfc09.firebaseio.com/movies.json`,
     		type: "POST",
-    		data: JSON.stringify(buildMovieObj),
+    		data: JSON.stringify(movieObject),
 			dataType: 'json'
     	}).done(function(){
     		resolve();

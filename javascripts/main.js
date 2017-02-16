@@ -78,6 +78,7 @@ let moviePoster;
 
 
 function buildMovieObj(movieArrayResults) {
+  console.log("movieArrayResults000000000", movieArrayResults);
   var movieCards = document.getElementById("outputEl");
   var n = 1;
   var newDiv = document.createElement("DIV");
@@ -90,7 +91,7 @@ function buildMovieObj(movieArrayResults) {
 
                        <p class="movieTitle">${movieArrayResults[i].original_title}</p>
                        <span class="releaseDate">(${movieArrayResults[i].release_date})</span>
-                       <button class="movieAddBtn" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">Add</button>
+                       <button class="movieAddBtn" id="${movieArrayResults[i].id}">Add</button>
                        <br>
                        <button class="movieDeleteBtn" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">Delete</button>
                        <p>${movieArrayResults[i].overview}</p>
@@ -108,23 +109,37 @@ function buildMovieObj(movieArrayResults) {
   }  
 }
 
+//helper
+function buildMovieObject(data) {
+  let currentUser = user.getUser();
+  console.log("currentUser", currentUser);
+  let movieObject = {
+    title: data.original_title,
+    id: data.id,
+    releaseDate: data.release_date,
+    image: "https://image.tmdb.org/t/p/w500" + data.poster_path,
+    userID: currentUser
+  };
+  db.trackAndAddToFirebase(movieObject);
+console.log("movieObject", movieObject);
+}
+
+
+
 
 //eventListeners for add/ delete buttons
 
-// Send selected movie to db then reload DOM with updated movie data
-$(document).on("click", ".movieAddBtn", function() {
-  console.log("click save new movie");
-  // let songObj = buildSongObj();
-  db.trackAndAddToFirebase(moviePoster);
-  // .then(function(){
-  loadSearchedMoviesToDOM();
-  // });
+
+// Send selected movie to db
+$(document).on("click", ".movieAddBtn", function(event) {
+  console.log("this.id", this.id);
+  var movieID = this.id;
+  api.getMovie(movieID)
+  .then((data)=>{
+    console.log("data", data);
+    buildMovieObject(data);
+  });
 });
-
-// vanilla JS eventListener
-// var addButton = document.getElementsByClassName("movieAddBtn");
-// addButton.addEventListener("click", db.trackAndAddToFirebase(moviePoster))
-
 
 
 // // go get the song from database and then populate the form for editing.
