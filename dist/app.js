@@ -13,7 +13,7 @@ function searchAPI(searchResult) {
              // data: JSON.parse(searchResult),
           //     dataType: 'json'
         }).done(function (searchResult) {
-            console.log("movieRetrieved1", searchResult);
+            console.log("movieRetrieved", searchResult);
             resolve(searchResult);
         });
     });
@@ -155,7 +155,7 @@ $("#logout").click(function(){
 // userInput.addEventListener("keyup", EnterSearch);
 
 function EnterSearch(event) {
-    console.log("event", event);
+    // console.log("event", event);
   if (event.keyCode === 13){
   var searchResult = document.getElementById("searchbar").value;
   console.log("searchResult", searchResult);
@@ -163,25 +163,28 @@ function EnterSearch(event) {
   }
 }
 
-function loadSearchedMoviesToDOM(searchResult) {
-    console.log("searchResult", searchResult);
-    api.searchAPI(searchResult).then(function(movieRetrieved) {
-        console.log("movieRetrieved", movieRetrieved.results[0].title); //***HAIL MARY
-
-        console.log("movieRetrieved", movieRetrieved.results[0].title); 
-        
-
-var printMoviesToDom = movieRetrieved; 
-        for (var i = 0; i < printMoviesToDom.results.length; i++) {
-        console.log("printMoviesToDom.results.length",printMoviesToDom.results.length);
-        document.getElementById("outputEl").innerHTML += movieRetrieved.results[i].title;
-        
+function loadSearchedMoviesToDOM(searchResult) {//this function takes the searchResults as a param
+    // console.log("searchResult", searchResult);
+    api.searchAPI(searchResult).then(function(movieRetrieved) {//the searchResults are passed to the searchAPI function, bringing back the array of movie results, which is now called movieRetrieved
+        console.log("movieRetrieved2", movieRetrieved.results);//testing the movie results here
+        var movieArrayResults = movieRetrieved.results;//storing the results in a variable, this make it easier to start at the level of info we need to build the card
+        console.log("hopefully an array of movies. ", movieArrayResults[0]);//testing the info in the first of the movie results
+        buildMovieObj(movieArrayResults);//sending the movie results to the card building function 
+        });
 }
 
-
-
-
-        });
+function buildMovieObj(movieArrayResults) {
+    console.log("the movies will be seen now!!!");
+  for (var i = 0; i < movieArrayResults.length; i++){//looping through the length of the array, incrementing after every iteration
+    console.log("will this be endless");
+    let moviePoster = `<div class="card box col s12">
+                       <img src="https://image.tmdb.org/t/p/w500/${movieArrayResults[i].poster_path}">
+                       <h4>${movieArrayResults[i].original_title}</h4><span>(${movieArrayResults[i].release_date})</span>
+                       <p>${movieArrayResults[i].overview}</p>
+                       </div>`;//this variable builds the card up in one variable and then it will be appended to the outputEl
+    $("#outputEl").append(moviePoster);//sends the end result of the cards to the section waiting to hold them on the html
+    console.log("this is after the movie should have been seen");
+  }  
 }
 
 
