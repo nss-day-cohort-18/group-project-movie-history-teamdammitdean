@@ -155,7 +155,7 @@ $("#logout").click(function(){
 // userInput.addEventListener("keyup", EnterSearch);
 
 function EnterSearch(event) {
-    console.log("event", event);
+    // console.log("event", event);
   if (event.keyCode === 13){
   var searchResult = document.getElementById("searchbar").value;
   console.log("searchResult", searchResult);
@@ -163,12 +163,30 @@ function EnterSearch(event) {
   }
 }
 
-function loadSearchedMoviesToDOM(searchResult) {
+function loadSearchedMoviesToDOM(searchResult) {//this function takes the searchResults as a param
     // console.log("searchResult", searchResult);
-    api.searchAPI(searchResult).then(function(movieRetrieved) {
-        console.log("movieRetrieved2", movieRetrieved.results[0].poster_path);
-        //call the buildMovieObj function here
+    api.searchAPI(searchResult).then(function(movieRetrieved) {//the searchResults are passed to the searchAPI function, bringing back the array of movie results, which is now called movieRetrieved
+        console.log("movieRetrieved2", movieRetrieved.results);//testing the movie results here
+        var movieArrayResults = movieRetrieved.results;//storing the results in a variable, this make it easier to start at the level of info we need to build the card
+        console.log("hopefully an array of movies. ", movieArrayResults[0]);//testing the info in the first of the movie results
+        buildMovieObj(movieArrayResults);//sending the movie results to the card building function 
         });
+}
+
+function buildMovieObj(movieArrayResults) {
+    console.log("the movies will be seen now!!!");
+    let $movieCard = $(`<div class="card box col s12"></div`);//constructs the main div of the card 
+    $(".output-target").html($movieCard);//sends the end result of the cards to the section waiting to hold them on the html
+    console.log("this is after the movie should have been seen");
+  for (var i = 0; i < movieArrayResults.length; i++){//looping through the length of the array, incrementing after every iteration
+    console.log("will this be endless");
+    let moviePoster = $(`<img src="$({movieArrayResults[i].poster_path})>"`),//builds the img tag and puts the img in there from the array
+        movieTitle = $(`<h2>$({movieArrayResults[i].original_title})</h2><span>($({release_date}))</span>`),//builds the title and the release date, putting both in there from the array
+        movieOverview = $(`<p>$({movieArrayResults[i].overview})</p>`);//builds and stores the plot summary, called overview in the array
+
+    $(".card").append(moviePoster.append(movieTitle).append(movieOverview));//this line grabs the movieCard div and appends the constructed pieces to it that this loop just built.
+
+  }  
 }
 
 
