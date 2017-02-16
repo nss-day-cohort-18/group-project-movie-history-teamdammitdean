@@ -78,7 +78,7 @@ function buildMovieObj(movieArrayResults) {
   for (var i = 0; i < movieArrayResults.length; i++){//looping through the length of the array, incrementing after every iteration
     console.log("will this be endless");
     let moviePoster = $(`<img src="$({movieArrayResults[i].poster_path})>"`),//builds the img tag and puts the img in there from the array
-        movieTitle = $(`<h2>$({movieArrayResults[i].original_title})</h2><span>($({release_date}))</span>`),//builds the title and the release date, putting both in there from the array
+        movieTitle = $(`<h2>$({movieArrayResults[i].original_title})</h2><span>($({movieArrayResults[i].release_date}))</span>`),//builds the title and the release date, putting both in there from the array
         movieOverview = $(`<p>$({movieArrayResults[i].overview})</p>`);//builds and stores the plot summary, called overview in the array
 
     $(".card").append(moviePoster.append(movieTitle).append(movieOverview));//this line grabs the movieCard div and appends the constructed pieces to it that this loop just built.
