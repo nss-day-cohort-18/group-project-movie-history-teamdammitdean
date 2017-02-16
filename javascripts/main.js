@@ -85,16 +85,40 @@ function buildMovieObj(movieArrayResults) {
     console.log("the movies will be seen now!!!");
   for (var i = 0; i < movieArrayResults.length; i++){//looping through the length of the array, incrementing after every iteration
     console.log("will this be endless");
-    let moviePoster = `<div class="col m4 movieCard" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}"><br>
-                       <img class="center-align movieImg" width="275px" height="275px" alt="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}" src="https://image.tmdb.org/t/p/w500/${movieArrayResults[i].poster_path}">
+    let moviePoster = 
 
-                       <p class="movieTitle">${movieArrayResults[i].original_title}</p>
-                       <span class="releaseDate">(${movieArrayResults[i].release_date})</span>
-                       <button class="movieAddBtn" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">Add</button>
-                       <br>
-                       <button class="movieDeleteBtn" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">Delete</button>
-                       <p>${movieArrayResults[i].overview}</p>
-                       </div>`;//this variable builds the card up in one variable and then it will be appended to the outputEl
+    `<div class="col m4 movieCard" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">
+
+        <div class="card sticky-action">
+
+          <div class="card-image">
+            
+              <img class="center-align movieImg activator" width="275px" height="275px" alt="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}" src="https://image.tmdb.org/t/p/w500/${movieArrayResults[i].poster_path}">
+            </div>
+
+            <div class="card-content"> 
+
+                <span class="movieTitle card-action card-title">${movieArrayResults[i].original_title}
+                </span>
+                
+                <span class="releaseDate">(${movieArrayResults[i].release_date})
+                </span>
+
+                <button class="movieAddBtn" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">Add
+                </button>
+
+                <button class="movieDeleteBtn" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">Delete
+                </button>
+            </div>
+
+            <div class="card-reveal">
+            <span class="card-title"><i class="material-icons right">close</i>   
+                <p class="movieOverview">${movieArrayResults[i].overview}</p>
+            </span>    
+            </div>
+          </div>  
+        </div>    
+    </div>`;//this variable builds the card up in one variable and then it will be appended to the outputEl
     newDiv.innerHTML += moviePoster;
     movieCards.appendChild(newDiv);
     if ( i === (n *3) - 1){

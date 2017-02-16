@@ -13,14 +13,14 @@ firebase.auth().onAuthStateChanged(function(user){
   if (user){
     currentUser = user.uid;
     console.log("currentUser logged in", currentUser);
-    logoutBtn.classList.remove('is-hidden');
-    signInBtn.classList.add('is-hidden');
+    logoutBtn.classList.add('hide');
+    signInBtn.classList.remove('hide');
   } else {
     currentUser = null;
     console.log("currentUser not logged in");
     alert("sign in to search movies");
-    logoutBtn.classList.add('is-hidden');
-    signInBtn.classList.remove('is-hidden');
+    logoutBtn.classList.add('hide');
+    signInBtn.classList.remove('hide');
   }
 });
 
