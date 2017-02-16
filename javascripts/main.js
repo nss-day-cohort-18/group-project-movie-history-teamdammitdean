@@ -49,7 +49,7 @@ $("#logout").click(function(){
 //   }
 // });
 
-//just putting below function right here for now, will probably need to go in main.js
+
 // var userInput = document.getElementBytId("searchbar");
 // userInput.addEventListener("keyup", EnterSearch);
 
@@ -74,10 +74,11 @@ function loadSearchedMoviesToDOM(searchResult) {//this function takes the search
 
 // <ul class="collapsible popout" data-collapsible="accordion">
 
-
+let moviePoster;
 
 
 function buildMovieObj(movieArrayResults) {
+  console.log("movieArrayResults000000000", movieArrayResults);
   var movieCards = document.getElementById("outputEl");
   var n = 1;
   var newDiv = document.createElement("DIV");
@@ -85,12 +86,12 @@ function buildMovieObj(movieArrayResults) {
     console.log("the movies will be seen now!!!");
   for (var i = 0; i < movieArrayResults.length; i++){//looping through the length of the array, incrementing after every iteration
     console.log("will this be endless");
-    let moviePoster = `<div class="col m4 movieCard" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}"><br>
+    moviePoster = `<div class="col m4 movieCard" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}"><br>
                        <img class="center-align movieImg" width="275px" height="275px" alt="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}" src="https://image.tmdb.org/t/p/w500/${movieArrayResults[i].poster_path}">
 
                        <p class="movieTitle">${movieArrayResults[i].original_title}</p>
                        <span class="releaseDate">(${movieArrayResults[i].release_date})</span>
-                       <button class="movieAddBtn" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">Add</button>
+                       <button class="movieAddBtn" id="${movieArrayResults[i].id}">Add</button>
                        <br>
                        <button class="movieDeleteBtn" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">Delete</button>
                        <p>${movieArrayResults[i].overview}</p>
@@ -104,12 +105,76 @@ function buildMovieObj(movieArrayResults) {
     }                   
     // $("#outputEl").append(moviePoster);//sends the end result of the cards to the section waiting to hold them on the html
     console.log("this is after the movie should have been seen");
+  
   }  
+}
+
+//helper
+function buildMovieObject(data) {
+  let currentUser = user.getUser();
+  console.log("currentUser", currentUser);
+  let movieObject = {
+    title: data.original_title,
+    id: data.id,
+    releaseDate: data.release_date,
+    image: "https://image.tmdb.org/t/p/w500" + data.poster_path,
+    userID: currentUser
+  };
+  db.trackAndAddToFirebase(movieObject);
+console.log("movieObject", movieObject);
 }
 
 
 
 
+//eventListeners for add/ delete buttons
 
+
+// Send selected movie to db
+$(document).on("click", ".movieAddBtn", function(event) {
+  console.log("this.id", this.id);
+  var movieID = this.id;
+  api.getMovie(movieID)
+  .then((data)=>{
+    console.log("data", data);
+    buildMovieObject(data);
+  });
+});
+
+
+// // go get the song from database and then populate the form for editing.
+// $(document).on("click", ".edit-btn", function() {
+//   console.log("click edit song");
+//   let songID = $(this).data("edit-id");
+//   db.getSong(songID)
+//   .then(function(song){
+//     return templates.songForm(song, songID);
+//   })
+//   .then(function(finishedForm){
+//     $(".uiContainer--wrapper").html(finishedForm);
+//   });
+// });
+
+
+// //Save edited song to FB then reload DOM with updated song data
+// $(document).on("click", ".save_edit_btn", function() {
+//   let songObj = buildSongObj(),
+//     songID = $(this).attr("id");
+//     db.editSong(songObj, songID)
+//     .then(function(data){
+//       loadSongsToDOM();
+//     });
+// });
+
+
+// // Remove song then reload the DOM w/out new song
+// $(document).on("click", ".delete-btn", function () {
+//   console.log("clicked delete song", $(this).data("delete-id"));
+//   let songID = $(this).data("delete-id");
+//   db.deleteSong(songID)
+//   .then(function(){
+//      loadSongsToDOM();
+//   });
+// });
 
 
