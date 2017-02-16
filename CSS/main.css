@@ -1,6 +1,157 @@
 
 
 /*# sourceMappingURL=main.css.map */
-.movieCard {
+/*.movieCard {
   border: 2px solid black;
+  margin-left: 5px;
+}*/
+
+
+/* styling for the star rating*/
+
+/*.rating {
+  float: left;
+  margin: 6px 0;
+  position: relative;
+  display: block;
+  color: red;
+  width: 0px;
+  height: 0px;
+  border-right: 10px solid transparent;
+  border-bottom: 7px solid #CC6600;
+  border-left: 10px solid transparent;
+  -moz-transform: rotate(35deg);
+  -webkit-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  -o-transform: rotate(35deg);
 }
+ 
+.rating:before {
+  border-bottom: 8px solid #CC6600;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  position: absolute;
+  height: 0px;
+  width: 0px;
+  top: -4.5px;
+  left: -6.5px;
+  display: block;
+  content: '';
+  -webkit-transform: rotate(-35deg);
+  -moz-transform: rotate(-35deg);
+  -ms-transform: rotate(-35deg);
+  -o-transform: rotate(-35deg);
+}
+ 
+.rating:after {
+  position: absolute;
+  display: block;
+  color: red;
+  top: 0.3px;
+  left: -10.5px;
+  width: 0px;
+  height: 0px;
+  border-right: 10px solid transparent;
+  border-bottom: 7px solid #CC6600;
+  border-left: 10px solid transparent;
+  -webkit-transform: rotate(-70deg);
+  -moz-transform: rotate(-70deg);
+  -ms-transform: rotate(-70deg);
+  -o-transform: rotate(-70deg);
+  content: '';
+}
+ 
+.nomal {
+  float: left;
+  margin: 6px 0;
+  position: relative;
+  display: block;
+  color: red;
+  width: 0px;
+  height: 0px;
+  border-right: 10px solid transparent;
+  border-bottom: 7px solid grey;
+  border-left: 10px solid transparent;
+  -moz-transform: rotate(35deg);
+  -webkit-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  -o-transform: rotate(35deg);
+}
+ 
+.nomal:before {
+  border-bottom: 8px solid grey;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  position: absolute;
+  height: 0px;
+  width: 0px;
+  top: -4.5px;
+  left: -6.5px;
+  display: block;
+  content: '';
+  -webkit-transform: rotate(-35deg);
+  -moz-transform: rotate(-35deg);
+  -ms-transform: rotate(-35deg);
+  -o-transform: rotate(-35deg);
+}
+ 
+.nomal:after {
+  position: absolute;
+  display: block;
+  color: red;
+  top: 0.3px;
+  left: -10.5px;
+  width: 0px;
+  height: 0px;
+  border-right: 10px solid transparent;
+  border-bottom: 7px solid grey;
+  border-left: 10px solid transparent;
+  -webkit-transform: rotate(-70deg);
+  -moz-transform: rotate(-70deg);
+  -ms-transform: rotate(-70deg);
+  -o-transform: rotate(-70deg);
+  content: '';
+}
+*/
+
+/*
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+/*fieldset, label { margin: 0; padding: 0; }*/
+/*body{ margin: 20px; }*/
+
+/****** Style Star Rating Widget *****/
+/*
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;/*this font is the one that makes the star icon available*/
+  /*display: inline-block;*/
+  /*content: "\f005";this is the code for the star icon*/
+/*}*/
+
+/*.rating > .half:before { 
+  content: "\f089";
+  /*position: absolute;*/
+
+/*.rating > label { 
+  color: #ddd; 
+ float: right; this float makes the stars line up 1-5 from left to right, without this the order would be reversed, aka right to left
+}*/
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+/*.rating > input:checked ~ label,  show gold star when clicked */
+/*.rating:not(:checked) > label:hover, /* hover current star */
+/*.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+/*.rating > input:checked + label:hover,  hover current star when changing rating */
+/*.rating > input:checked ~ label:hover,*/
+/*.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+/*.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } */
