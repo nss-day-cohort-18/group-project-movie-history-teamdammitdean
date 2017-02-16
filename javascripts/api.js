@@ -12,7 +12,7 @@ function searchAPI(searchResult) {
              // data: JSON.parse(searchResult),
           //     dataType: 'json'
         }).done(function (searchResult) {
-            console.log("movieRetrieved1", searchResult);
+            console.log("movieRetrieved", searchResult);
             resolve(searchResult);
         });
     });

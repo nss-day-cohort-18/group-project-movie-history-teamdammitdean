@@ -63,9 +63,18 @@ function EnterSearch(event) {
 function loadSearchedMoviesToDOM(searchResult) {
     console.log("searchResult", searchResult);
     api.searchAPI(searchResult).then(function(movieRetrieved) {
-        console.log("movieRetrieved2", movieRetrieved);
-        });
-}
+        console.log("movieRetrieved", movieRetrieved.results[0].title); //***HAIL MARY
+
+        console.log("movieRetrieved", movieRetrieved.results[0].title); 
+        
+
+var printMoviesToDom = movieRetrieved; 
+        for (var i = 0; i < printMoviesToDom.results.length; i++) {
+        console.log("printMoviesToDom.results.length",printMoviesToDom.results.length);
+        document.getElementById("outputEl").innerHTML += movieRetrieved.results[i].title + "<br>" + movieRetrieved.results[i].poster_path;        
+};
+
+})
 
 
 
