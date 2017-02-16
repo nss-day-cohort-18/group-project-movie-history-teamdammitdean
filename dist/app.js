@@ -19,9 +19,29 @@ function searchAPI(searchResult) {
     });
 }
 
+function getMovie(movieID) {
+    console.log("movieID", movieID);
+// console.log("searching the api for: ", searchResult);
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+            url: `https://api.themoviedb.org/3/movie/${movieID}?api_key=56696d263700546dd8f63b84a5e3d534`,//this url will grab the user's search result
+            type:'GET',
+             // data: JSON.parse(searchResult),
+          //     dataType: 'json'
+        }).done(function (searchResult) {
+            console.log("movieRetrieved", searchResult);
+            resolve(searchResult);
+        });
+    });
+}
+
 module.exports = {
-	searchAPI
+	searchAPI,
+    getMovie
 };
+
+
+
 },{"jquery":10}],2:[function(require,module,exports){
 "use strict";
 
@@ -74,33 +94,66 @@ module.exports = getKey;
 console.log("hello");
 
 //the requires needed for this page
-let $ = require('jquery');
-    // template = require("../templates/cardLayout.hbs");     
+let $ = require('jquery'),
+    firebase = require("./config.js");
 
 
-
-
-// how we search the users list of movies
-function searchFirebase() {
-    //
+//when user tracks a movie
+function trackAndAddToFirebase(movieObject) {
+    console.log("hi track movie function");
+    return new Promise(function(resolve,reject){
+    	$.ajax({
+    		url: `https://movie-history-group-proj-dfc09.firebaseio.com/movies.json`,
+    		type: "POST",
+    		data: JSON.stringify(movieObject),
+			dataType: 'json'
+    	}).done(function(){
+    		resolve();
+    	});
+    });
 }
 
-function addToFirebase() {
-    //create the movie object here so that you can attach the user uid to the movie
+//to see user's tracked movies--show tracked filter
+// function getUserMoviesShownOnFirebase(user) {
+// 	return new Promise(function(resolve,reject){
+// 		$.ajax({
+//     		url:`https://movie-history-group-proj-dfc09.firebaseio.com/movies.json?orderBy="uid"$equalTo="${}`,
+//     		type: 
+//   		}).done(function(){
+//     		resolve();
+//   		});
+//   	});
+// }
+
+
+//to delete a movie from user's tracked movies
+function deleteAndRemoveFromTrackedFirebase() {
+    console.log("hi delete movie function");
+    return new Promise(function(resolve,reject){
+    	$.ajax({
+    		url: `https://movie-history-group-proj-dfc09.firebaseio.com/movies.json`,
+    		type: "DELETE"
+    	}).done(function(){
+    		resolve();
+    	});
+    });
 }
 
-function addToUnwatched() {
+//how to rate movie user has tracked
+function rateTrackedMovie(){
 
 }
 
-function rateMovie() {
 
-}
 
-// module.exports = {
-    
-// };
-},{"jquery":10}],5:[function(require,module,exports){
+
+
+module.exports = {
+	trackAndAddToFirebase,
+	deleteAndRemoveFromTrackedFirebase
+	// getUserMoviesShownOnFirebase
+};
+},{"./config.js":2,"jquery":10}],5:[function(require,module,exports){
 "use strict";
 
 let $ = require("jquery"),
@@ -152,7 +205,7 @@ $("#logout").click(function(){
 //   }
 // });
 
-//just putting below function right here for now, will probably need to go in main.js
+
 // var userInput = document.getElementBytId("searchbar");
 // userInput.addEventListener("keyup", EnterSearch);
 
@@ -177,10 +230,11 @@ function loadSearchedMoviesToDOM(searchResult) {//this function takes the search
 
 // <ul class="collapsible popout" data-collapsible="accordion">
 
-
+let moviePoster;
 
 
 function buildMovieObj(movieArrayResults) {
+  console.log("movieArrayResults000000000", movieArrayResults);
   var movieCards = document.getElementById("outputEl");
   var n = 1;
   var newDiv = document.createElement("DIV");
@@ -188,7 +242,8 @@ function buildMovieObj(movieArrayResults) {
     console.log("the movies will be seen now!!!");
   for (var i = 0; i < movieArrayResults.length; i++){//looping through the length of the array, incrementing after every iteration
     console.log("will this be endless");
-    let moviePoster = 
+
+   moviePoster = 
 
     `<div class="col m4 movieCard" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">
 
@@ -207,7 +262,7 @@ function buildMovieObj(movieArrayResults) {
                 <span class="releaseDate">(${movieArrayResults[i].release_date})
                 </span>
 
-                <button class="movieAddBtn" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">Add
+                <button class="movieAddBtn" id="${movieArrayResults[i].id}">Add
                 </button>
 
                 <button class="movieDeleteBtn" id="${movieArrayResults[i].original_title}${movieArrayResults[i].release_date}">Delete
@@ -222,6 +277,7 @@ function buildMovieObj(movieArrayResults) {
           </div>  
         </div>    
     </div>`;//this variable builds the card up in one variable and then it will be appended to the outputEl
+
     newDiv.innerHTML += moviePoster;
     movieCards.appendChild(newDiv);
     if ( i === (n *3) - 1){
@@ -231,13 +287,77 @@ function buildMovieObj(movieArrayResults) {
     }                   
     // $("#outputEl").append(moviePoster);//sends the end result of the cards to the section waiting to hold them on the html
     console.log("this is after the movie should have been seen");
+  
   }  
+}
+
+//helper
+function buildMovieObject(data) {
+  let currentUser = user.getUser();
+  console.log("currentUser", currentUser);
+  let movieObject = {
+    title: data.original_title,
+    id: data.id,
+    releaseDate: data.release_date,
+    image: "https://image.tmdb.org/t/p/w500" + data.poster_path,
+    userID: currentUser
+  };
+  db.trackAndAddToFirebase(movieObject);
+console.log("movieObject", movieObject);
 }
 
 
 
 
+//eventListeners for add/ delete buttons
 
+
+// Send selected movie to db
+$(document).on("click", ".movieAddBtn", function(event) {
+  console.log("this.id", this.id);
+  var movieID = this.id;
+  api.getMovie(movieID)
+  .then((data)=>{
+    console.log("data", data);
+    buildMovieObject(data);
+  });
+});
+
+
+// // go get the song from database and then populate the form for editing.
+// $(document).on("click", ".edit-btn", function() {
+//   console.log("click edit song");
+//   let songID = $(this).data("edit-id");
+//   db.getSong(songID)
+//   .then(function(song){
+//     return templates.songForm(song, songID);
+//   })
+//   .then(function(finishedForm){
+//     $(".uiContainer--wrapper").html(finishedForm);
+//   });
+// });
+
+
+// //Save edited song to FB then reload DOM with updated song data
+// $(document).on("click", ".save_edit_btn", function() {
+//   let songObj = buildSongObj(),
+//     songID = $(this).attr("id");
+//     db.editSong(songObj, songID)
+//     .then(function(data){
+//       loadSongsToDOM();
+//     });
+// });
+
+
+// // Remove song then reload the DOM w/out new song
+// $(document).on("click", ".delete-btn", function () {
+//   console.log("clicked delete song", $(this).data("delete-id"));
+//   let songID = $(this).data("delete-id");
+//   db.deleteSong(songID)
+//   .then(function(){
+//      loadSongsToDOM();
+//   });
+// });
 
 
 
@@ -257,8 +377,8 @@ firebase.auth().onAuthStateChanged(function(user){
   if (user){
     currentUser = user.uid;
     console.log("currentUser logged in", currentUser);
-    logoutBtn.classList.add('hide');
-    signInBtn.classList.remove('hide');
+    logoutBtn.classList.remove('hide');
+    signInBtn.classList.add('hide');
   } else {
     currentUser = null;
     console.log("currentUser not logged in");
