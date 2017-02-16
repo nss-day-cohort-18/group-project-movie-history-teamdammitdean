@@ -3,29 +3,62 @@
 console.log("hello");
 
 //the requires needed for this page
-let $ = require('jquery');
-    // template = require("../templates/cardLayout.hbs");     
+let $ = require('jquery'),
+    firebase = require("./config.js");
 
 
-
-
-// how we search the users list of movies
-function searchFirebase() {
-    //
+//when user tracks a movie
+function trackAndAddToFirebase(buildMovieObj) {
+    console.log("hi track movie function");
+    return new Promise(function(resolve,reject){
+    	$.ajax({
+    		url: `https://movie-history-group-proj-dfc09.firebaseio.com/movies.json`,
+    		type: "POST",
+    		data: JSON.stringify(buildMovieObj),
+			dataType: 'json'
+    	}).done(function(){
+    		resolve();
+    	});
+    });
 }
 
-function addToFirebase() {
-    //create the movie object here so that you can attach the user uid to the movie
+//to see user's tracked movies--show tracked filter
+function getUserMoviesShownOnFirebase(user) {
+	return new Promise(function(resolve,reject){
+		$.ajax({
+    		url:`https://movie-history-group-proj-dfc09.firebaseio.com/movies.json?orderBy="uid"$equalTo="${}`,
+    		type: 
+  		}).done(function(){
+    		resolve();
+  		});
+  	});
 }
 
-function addToUnwatched() {
+
+//to delete a movie from user's tracked movies
+function deleteAndRemoveFromTrackedFirebase() {
+    console.log("hi delete movie function");
+    return new Promise(function(resolve,reject){
+    	$.ajax({
+    		url: `https://movie-history-group-proj-dfc09.firebaseio.com/movies.json`,
+    		type: "DELETE"
+    	}).done(function(){
+    		resolve();
+    	});
+    });
+}
+
+//how to rate movie user has tracked
+function rateTrackedMovie(){
 
 }
 
-function rateMovie() {
 
-}
 
-// module.exports = {
-    
-// };
+
+
+module.exports = {
+	trackAndAddToFirebase,
+	deleteAndRemoveFromTrackedFirebase,
+	getUserMoviesShownOnFirebase
+};

@@ -6,7 +6,7 @@ let $ = require("jquery"),
   db = require("./dbInteraction.js"),
   api = require("./api.js"),
   // template = require("../templates/cardLayout.hbs"),
-  user = require("./user");
+  user = require("./user.js");
 
 // user is automatically logged out when first visiting page
 user.logOut();
@@ -47,7 +47,7 @@ $("#logout").click(function(){
 //   }
 // });
 
-//just putting below function right here for now, will probably need to go in main.js
+
 // var userInput = document.getElementBytId("searchbar");
 // userInput.addEventListener("keyup", EnterSearch);
 
@@ -81,11 +81,12 @@ function buildMovieObj(movieArrayResults) {
                        </div>`;//this variable builds the card up in one variable and then it will be appended to the outputEl
     $("#outputEl").append(moviePoster);//sends the end result of the cards to the section waiting to hold them on the html
     console.log("this is after the movie should have been seen");
+  
   }  
 }
 
 
-
+ db.trackAndAddToFirebase(moviePoster); //needs to be called on button click to add to user's tracked movies
 
 
 
