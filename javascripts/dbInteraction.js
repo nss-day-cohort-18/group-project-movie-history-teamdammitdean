@@ -23,16 +23,16 @@ function trackAndAddToFirebase(buildMovieObj) {
 }
 
 //to see user's tracked movies--show tracked filter
-function getUserMoviesShownOnFirebase(user) {
-	return new Promise(function(resolve,reject){
-		$.ajax({
-    		url:`https://movie-history-group-proj-dfc09.firebaseio.com/movies.json?orderBy="uid"$equalTo="${}`,
-    		type: 
-  		}).done(function(){
-    		resolve();
-  		});
-  	});
-}
+// function getUserMoviesShownOnFirebase(user) {
+// 	return new Promise(function(resolve,reject){
+// 		$.ajax({
+//     		url:`https://movie-history-group-proj-dfc09.firebaseio.com/movies.json?orderBy="uid"$equalTo="${}`,
+//     		type: 
+//   		}).done(function(){
+//     		resolve();
+//   		});
+//   	});
+// }
 
 
 //to delete a movie from user's tracked movies
@@ -59,6 +59,6 @@ function rateTrackedMovie(){
 
 module.exports = {
 	trackAndAddToFirebase,
-	deleteAndRemoveFromTrackedFirebase,
-	getUserMoviesShownOnFirebase
+	deleteAndRemoveFromTrackedFirebase
+	// getUserMoviesShownOnFirebase
 };
