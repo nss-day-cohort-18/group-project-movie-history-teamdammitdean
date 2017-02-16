@@ -18,6 +18,25 @@ function searchAPI(searchResult) {
     });
 }
 
+function getMovie(movieID) {
+    console.log("movieID", movieID);
+// console.log("searching the api for: ", searchResult);
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+            url: `https://api.themoviedb.org/3/movie/${movieID}?api_key=56696d263700546dd8f63b84a5e3d534`,//this url will grab the user's search result
+            type:'GET',
+             // data: JSON.parse(searchResult),
+          //     dataType: 'json'
+        }).done(function (searchResult) {
+            console.log("movieRetrieved", searchResult);
+            resolve(searchResult);
+        });
+    });
+}
+
 module.exports = {
-	searchAPI
+	searchAPI,
+    getMovie
 };
+
+

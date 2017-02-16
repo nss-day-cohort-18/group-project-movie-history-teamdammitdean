@@ -1,5 +1,5 @@
 lib/.sass-cache
 lib/node_modules
 .DS_Store
-dbGetter.js
+javascripts/dbGetter.js
 dist/app.js
