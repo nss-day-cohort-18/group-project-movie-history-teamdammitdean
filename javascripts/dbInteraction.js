@@ -1,17 +1,21 @@
 "use strict";
-//We made empty stuff for us to use later
 
-// how we search the movie database and return results
-function searchAPI() {
+console.log("hello");
 
-}
+//the requires needed for this page
+let $ = require('jquery');
+    // template = require("../templates/cardLayout.hbs");     
+
+
+
+
 // how we search the users list of movies
-function searchDb() {
-
+function searchFirebase() {
+    //
 }
 
-function addToTracked() {
-
+function addToFirebase() {
+    //create the movie object here so that you can attach the user uid to the movie
 }
 
 function addToUnwatched() {
@@ -21,3 +25,7 @@ function addToUnwatched() {
 function rateMovie() {
 
 }
+
+// module.exports = {
+    
+// };

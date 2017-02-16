@@ -3,53 +3,44 @@
     <head>
         <meta charset="utf-8">
          <!-- Compiled and minified CSS -->
+         <!-- Added bootstrap for range -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-        <link rel="stylesheet" type="text/css" href=css/main.css"">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
         <title>Team Damnit Dean</title>
     </head>
     <body>
     	<header>
             <nav>
                 <div class="nav-wrapper">
-                  <form>
                     <div class="input-field">
-                      <input id="search" type="search" required>
+                      <input id="searchbar" type="search" required>
                       <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                       <i class="material-icons">close</i>
                     </div>
-                  </form>
                 </div>
             </nav>
             <nav>
                 <div class="nav-wrapper">
-                  <a href="#" class="brand-logo right">Logo</a>
                   <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li><a href="#">Show untracked</a></li>
                     <li><a href="#">Show unwatched</a></li>
                     <li><a href="#">Show watched</a></li>
-                    <li><a href="#">Favorites</a></li>
-                    <li><a href="#">Log in/Log Out</a></li>
+                    <li><a href="#" id="auth-btn" class="is-hidden">Log in</a></li>
+                    <li><a href="#" id="logout" class="is-hidden">Log Out</a></li>
                   </ul>
                 </div>
             </nav>
-    	</header>
-    	<section>
-    		<h1>Movie History</h1>
-    	</section>
-    	<section>
-    		<div class="card">
+      </header>
+                
+      
+        <!-- OUTPUT ELEMENT FOR MOVIE CARDS -->
+        <div class="container" id="outputEl"></div>
     	
-    		</div>    		
-    		<div class="card">
-    	
-    		</div>    		
-    		<div class="card">
-    	
-    		</div>
-
-    	</section>
     <script type="text/javascript" src="dist/app.js"></script>
-    <script type="text/javascript" src="/lib/node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript for bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     </body>
 </html>
