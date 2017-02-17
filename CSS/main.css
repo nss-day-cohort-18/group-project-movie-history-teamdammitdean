@@ -1,15 +1,36 @@
 
 
 /*# sourceMappingURL=main.css.map */
-.card {
-  border: 2px solid black;
-}
-
+/* font size and bold font for overview of movie */
 .movieOverview {
   font-size: 18px;
   font-weight: bold;
 }
-
+/* centers movie title in card */
+span.movieTitle {
+  text-align: center;
+}
+/* bold font for release date of movie */
 .releaseDate {
   font-weight: bold;
+}
+/* button grows in size when mouse is over */
+.movieAddBtn:hover {
+  font-size: 16px;
+}
+/* button grows in size when mouse is over */
+.movieDeleteBtn:hover {
+  font-size: 16px;
+}
+/* centering stars inside card*/
+.br-widget {
+  text-align: center;
+}
+/* background color of page */
+body {
+  background-color: lightgray;
+}
+/* salmon color for when users mouse is over card */
+.card:hover {
+  background-color: salmon;
 }

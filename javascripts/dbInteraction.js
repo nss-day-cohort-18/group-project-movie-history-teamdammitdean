@@ -43,7 +43,7 @@ function getUserMoviesShownOnFirebase(user) {
 
 
 //to delete a movie from user's tracked movies
-function deleteAndRemoveFromTrackedFirebase() {
+function deleteAndRemoveFromTrackedFirebase(movieObject) {
     console.log("hi delete movie function");
     return new Promise(function(resolve,reject){
     	$.ajax({
@@ -55,10 +55,12 @@ function deleteAndRemoveFromTrackedFirebase() {
     });
 }
 
-//how to rate movie user has tracked
-function rateTrackedMovie(){
 
-}
+
+//how to rate movie user has tracked
+// function rateTrackedMovie(){
+
+// }
 
 
 
