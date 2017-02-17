@@ -177,7 +177,7 @@ console.log("movieObject", movieObject);
 //eventListeners for add/ delete buttons
 
 
-// Send selected movie to db
+// Add selected movie to db
 $(document).on("click", ".movieAddBtn", function(event) {
   console.log("this.id", this.id);
   var movieID = this.id;
@@ -187,6 +187,34 @@ $(document).on("click", ".movieAddBtn", function(event) {
     buildMovieObject(data);
   });
 });
+
+//Delete selected movie from db
+$(document).on("click", ".movieDeleteBtn", function(event) {
+  console.log("hi delete function");
+  console.log("this.id", this.id);
+  var movieID = this.id;
+  db.deleteAndRemoveFromTrackedFirebase(movieID);
+  // let movieID = $(this).data("delete-id");
+
+  .then((data)=>{
+    console.log("data", data);
+    buildMovieObject(data);
+  });
+});
+
+
+// Remove song then reload the DOM w/out new song
+// $(document).on("click", ".delete-btn", function () {
+//   console.log("clicked delete song", $(this).data("delete-id"));
+//   let songID = $(this).data("delete-id");
+//   db.deleteAndRemoveFromTrackedFirebase();
+//   .then(function(){
+//      loadSongsToDOM();
+//   });
+// });
+
+
+
 
 
 // // go get the song from database and then populate the form for editing.

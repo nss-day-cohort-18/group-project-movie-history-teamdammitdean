@@ -10421,6 +10421,27 @@ jQuery.extend( {
 			deferred = jQuery.Deferred(),
 			completeDeferred = jQuery.Callbacks( "once memory" ),
 
+<<<<<<< HEAD
+//to delete a movie from user's tracked movies
+function deleteAndRemoveFromTrackedFirebase(movieObject) {
+    console.log("hi delete movie function");
+    return new Promise(function(resolve,reject){
+    	$.ajax({
+    		url: `https://movie-history-group-proj-dfc09.firebaseio.com/movies.json`,
+    		type: "DELETE"
+    	}).done(function(){
+    		resolve();
+    	});
+    });
+}
+
+
+
+//how to rate movie user has tracked
+// function rateTrackedMovie(){
+
+// }
+=======
 			// Status-dependent callbacks
 			statusCode = s.statusCode || {},
 
@@ -10430,6 +10451,7 @@ jQuery.extend( {
 
 			// Default abort message
 			strAbort = "canceled",
+>>>>>>> master
 
 			// Fake xhr
 			jqXHR = {
@@ -10580,6 +10602,45 @@ jQuery.extend( {
 			// Remember the hash so we can put it back
 			uncached = s.url.slice( cacheURL.length );
 
+<<<<<<< HEAD
+// Add selected movie to db
+$(document).on("click", ".movieAddBtn", function(event) {
+  console.log("this.id", this.id);
+  var movieID = this.id;
+  api.getMovie(movieID)
+  .then((data)=>{
+    console.log("data", data);
+    buildMovieObject(data);
+  });
+});
+
+//Delete selected movie from db
+$(document).on("click", ".movieDeleteBtn", function(event) {
+  console.log("hi delete function");
+  console.log("this.id", this.id);
+  var movieID = this.id;
+  api.getMovie(movieID)
+  .then((data)=>{
+    console.log("data", data);
+    buildMovieObject(data);
+  });
+});
+
+
+// Remove song then reload the DOM w/out new song
+// $(document).on("click", ".delete-btn", function () {
+//   console.log("clicked delete song", $(this).data("delete-id"));
+//   let songID = $(this).data("delete-id");
+//   db.deleteAndRemoveFromTrackedFirebase();
+//   .then(function(){
+//      loadSongsToDOM();
+//   });
+// });
+
+
+
+
+=======
 			// If data is available, append data to url
 			if ( s.data ) {
 				cacheURL += ( rquery.test( cacheURL ) ? "&" : "?" ) + s.data;
@@ -10587,6 +10648,7 @@ jQuery.extend( {
 				// #9682: remove data so that it's not used in an eventual retry
 				delete s.data;
 			}
+>>>>>>> master
 
 			// Add or update anti-cache param if needed
 			if ( s.cache === false ) {
