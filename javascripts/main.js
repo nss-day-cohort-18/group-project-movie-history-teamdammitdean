@@ -40,6 +40,13 @@ $("#logout").click(function(){
   // loadMoviesToDOM();
 });
 
+$("#userWatchList").on("click", function(){
+  console.log("clicked Show unwatched");
+    let currentUser = user.getUser();
+    db.getUserMoviesShownOnFirebase(currentUser);
+});
+
+
 // search bar and enter key pressed
 // $("#searchbar").keyup(function(event){
 //   if (event.which == 13) {
