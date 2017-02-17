@@ -1,6 +1,13 @@
 
 
 /*# sourceMappingURL=main.css.map */
-.movieCard {
-  border: 2px solid black;
+
+.movieOverview {
+  font-size: 18px;
+  font-weight: bold;
 }
+
+.releaseDate {
+  font-weight: bold;
+}
+
