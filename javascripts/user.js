@@ -1,21 +1,31 @@
 "use strict";
 
-let firebase = require("./firebaseConfig"),
+let firebase = require("./config"),
 	provider = new firebase.auth.GoogleAuthProvider(),
 	currentUser = null;
 
-firebase.auth().onAuthStateChange( function(user){
-	if (user){
-		console.log("currentUser logged in", currentUser);
+// getting Ids of login/logout from dom
+var logoutBtn = document.getElementById('logout');
+var signInBtn = document.getElementById('auth-btn'); 
 
-	}else{
-		currentUser = null;
-		console.log("currentUser is not logged in");
-	}
+// function for hide/show login/logout buttons
+firebase.auth().onAuthStateChanged(function(user){
+  if (user){
+    currentUser = user.uid;
+    console.log("currentUser logged in", currentUser);
+    logoutBtn.classList.remove('hide');
+    signInBtn.classList.add('hide');
+  } else {
+    currentUser = null;
+    console.log("currentUser not logged in");
+    alert("sign in to search movies");
+    logoutBtn.classList.add('hide');
+    signInBtn.classList.remove('hide');
+  }
 });
 
 function logInGoogle() {
-	return firebase.auth().signInWIthPopup(provider);
+	return firebase.auth().signInWithPopup(provider);
 }
 
 function logOut() {
